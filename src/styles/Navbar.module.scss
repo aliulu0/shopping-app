@@ -1,0 +1,212 @@
+@import "global.module.scss";
+.navbarContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 10vh;
+  border-bottom: 1px solid $gray-color;
+  box-shadow: 0 1px 5px rgba(100, 100, 100, 0.6);
+  .navbarLogo {
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+    height: 100%;
+    cursor: pointer;
+    img {
+      width: 150px;
+    }
+    span {
+      margin-left: 5px;
+      font-size: 60px;
+      color: $orange-color;
+    }
+  }
+  .navbarSearch {
+    position: relative;
+    display: flex;
+    .searchInput {
+      width: 500px;
+      padding: 15px 20px;
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+      background-color: $gray-color;
+    }
+    .searchInput:focus {
+      border: 1px solid #e0e0e0;
+    }
+    .searchIcon {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      font-size: 24px;
+      color: $orange-color;
+      cursor: pointer;
+    }
+  }
+  .navbarControls {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    .controlsItem,
+    .controlsItemProfile {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      width: 200px;
+      height: 50px;
+      border: none;
+      border-radius: 10px;
+      margin: 0px 10px;
+      cursor: pointer;
+      background-color: $gray-color;
+      font-size: 20px;
+      position: relative;
+      font-weight: 500;
+      text-align: center;
+      span {
+        font-size: 19px;
+        margin: 0 10px;
+      }
+    }
+    .controlsItem:hover,
+    .controlsItemProfile:hover {
+      background-color: $orange-color;
+      color: white;
+      span {
+        color: white;
+      }
+    }
+  }
+  .controlsItemMenu,
+  .controlsItemExit {
+    display: none;
+  }
+
+  .navbarControlsMobileMenu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 0, 0, 0.3);
+    z-index: 999;
+    .mobileMenuContent {
+      position: absolute;
+      background-color: white;
+      top: 0;
+      right: 0;
+      width: 60%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.5s ease-in-out;
+    }
+  }
+  .mobileMenuList {
+    position: absolute;
+    top: 15%;
+    right: 15%;
+    display: flex;
+    flex-direction: column;
+    z-index: 999;
+  }
+  .mobileMenuExitBtn {
+    position: absolute;
+    top: 10%;
+    right: 10%;
+    font-size: 26px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+  .mobileMenuLoginBtn{
+      color: $orange-color;
+  }
+  .mobileMenuBtn, .mobileMenuLoginBtn {
+    font-size: 22px;
+    width: 200px;
+    height: 100px;
+    margin: 10px auto;
+    border: none;
+    border-bottom: 1px solid black;
+    background-color: white;
+    text-align: start;
+    align-items: center;
+    font-weight: 500;
+    span {
+      padding: 5px;
+      font-size: 22px;
+      margin: 0 10px;
+    }
+  }
+  @include desktop {
+    .navbarControls {
+      .controlsItem {
+        display: none;
+      }
+    }
+  }
+  @include tabletLG {
+    .navbarSearch {
+      .searchInput {
+        width: 400px;
+      }
+    }
+    .navbarControls {
+      .controlsItemProfile {
+        display: none;
+      }
+      .controlsItemMenu {
+        display: block;
+        padding: 10px;
+        border-radius: 10px;
+        border: none;
+        height: 50px;
+        width: 50px;
+      }
+    }
+  }
+  @include mobile {
+    .navbarLogo {
+      margin: 0px 5px;
+      img {
+        width: 100px;
+      }
+      span {
+        font-size: 40px;
+      }
+    }
+    .navbarSearch {
+      .searchIcon {
+        top: 10px;
+        font-size: 18px;
+        right: 5px;
+      }
+      .searchInput {
+        padding: 10px 15px;
+        width: 150px;
+        font-size: 15px;
+      }
+    }
+    .navbarControls {
+      .controlsItemMenu {
+        height: 35px;
+        width: 35px;
+      }
+    }
+    .mobileMenuList {
+      right: 5%;
+    }
+  }
+}
