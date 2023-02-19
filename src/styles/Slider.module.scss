@@ -1,0 +1,97 @@
+@import "global.module.scss";
+
+.sliderContainer{
+    width: 80%;
+    height: 400px;
+    margin: 20px auto;
+    position: relative;
+    
+    .sliderContent{
+        width: 100%;
+        height: 100%;
+        background-position: center;
+    }
+    .slide{
+        background-size: cover;
+        position: relative;
+        height: 100%;
+        border-radius: 20px;
+        h2{
+            position: absolute;
+            width: 100%;
+            top: 10%;
+            left: 15%;
+            font-size: 30px;
+        }
+    }
+
+    .sliderRightArrow{
+        position: absolute;
+        top: 50%;
+        transform: translate(0,-50%);
+        right: 30px;
+        font-size: 40px;
+        color: $orange-color;
+        z-index: 1;
+        cursor: pointer;
+    }
+    .sliderLeftArrow{
+        position: absolute;
+        top: 50%;
+        transform: translate(0,-50%);
+        left: 30px;
+        font-size: 40px;
+        color: $orange-color;
+        z-index: 1;
+        cursor: pointer;
+    }
+    .sliderDotContainer{
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+    .sliderDot{
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        border: 0.5px solid $orange-color;
+        margin: 0px 3px;
+        cursor: pointer;
+        background-color: #000;   
+    }
+    .sliderDot:hover{
+        transform: scale(1.1);
+    }
+}
+@include desktop{
+    .sliderContainer{
+        width: 90%;
+        height: 300px;
+        margin: 20px auto;
+        position: relative;
+        
+        .slide{
+            h2{
+                top: 10%;
+                left: 15%;
+                font-size: 24px;
+            }
+        }
+    }
+}
+@include tablet{
+    .sliderContainer{
+        width: 100%;
+        height: 200px;
+        margin: 20px auto;
+        position: relative;
+        
+        .slide{
+            h2{
+                top: 3%;
+                left: 15%;
+                font-size: 14px;
+            }
+        }
+    }
+}
