@@ -81,7 +81,7 @@
 }
 @include tablet{
     .sliderContainer{
-        width: 100%;
+        width: 98%;
         height: 200px;
         margin: 20px auto;
         position: relative;
@@ -92,6 +92,10 @@
                 left: 15%;
                 font-size: 14px;
             }
+        }
+        .sliderDot{
+            width: 12px;
+            height: 12px;
         }
     }
 }

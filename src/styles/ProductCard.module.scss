@@ -1,0 +1,145 @@
+@import "global.module.scss";
+.productContainer {
+  display: flex;
+  flex-direction: column;
+  max-width: 280px;
+  width: 100%;
+  height: 350px;
+  border: 1px solid #e0e0e0;
+  padding: 10px 20px;
+  justify-content: space-around;
+  border-radius: 10px;
+  position: relative;
+  .productIcon {
+    position: absolute;
+    top: 3%;
+    right: 5%;
+    background-color: $gray-color;
+    padding: 10px;
+    width: 24px;
+    height: 27px;
+    border-radius: 50%;
+    font-size: 24px;
+    align-items: center;
+    cursor: pointer;
+    visibility: hidden;
+    box-shadow: 0 1px 5px rgba(100, 100, 100, 0.6);
+  }
+  .productIcon:hover {
+    color: $orange-color;
+  }
+  .productImg {
+    width: 100%;
+    height: 200px;
+    object-fit: fill;
+    object-position: center;
+    border-radius: 10px;
+  }
+  .productInfo {
+    .rating {
+      display: flex;
+      align-items: center;
+      margin: 5px auto;
+    }
+    .ratingIcon {
+      color: $orange-color;
+    }
+    p {
+      font-size: 15px;
+    }
+    span {
+      font-size: 18px;
+      font-weight: 700;
+      margin-right: 5px;
+    }
+  }
+  .productPrices {
+    display: flex;
+    margin: 5px auto;
+    align-items: center;
+    .oldPrice {
+      text-decoration: line-through;
+      text-decoration-thickness: 2px;
+      color: #bdbdbd;
+      font-size: 17px;
+      margin-right: 10px;
+    }
+    .newPrice {
+      color: $orange-color;
+      font-size: 20px;
+    }
+  }
+  .productCartBtn {
+    visibility: hidden;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background-color: $orange-color;
+    color: white;
+    font-weight: 500;
+    font-size: 18px;
+    cursor: pointer;
+    transition: visible 0.5s ease-in;
+  }
+}
+.productContainer:hover {
+  .productCartBtn {
+    visibility: visible;
+  }
+  .productIcon {
+    visibility: visible;
+  }
+}
+@include desktop {
+  .productContainer {
+    max-width: 200px;
+    .productIcon {
+      padding: 10px;
+    }
+  }
+}
+@include tabletLG {
+  .productContainer {
+    max-width: 150px;
+    .productIcon {
+      font-size: 18px;
+    }
+    .productImg {
+      width: 100%;
+      height: 180px;
+    }
+    .productInfo {
+      p {
+        font-size: 15px;
+      }
+      span {
+        font-size: 17px;
+        font-weight: 700;
+        margin-right: 5px;
+      }
+    }
+    .productPrices {
+      .oldPrice {
+        font-size: 15px;
+      }
+      .newPrice {
+        color: $orange-color;
+        font-size: 18px;
+      }
+    }
+    .productCartBtn {
+      padding: 8px;
+      font-size: 15px;
+    }
+  }
+}
+@include mobile {
+  .productContainer {
+    .productIcon {
+      font-size: 15px;
+    }
+    .productImg {
+      height: 150px;
+    }
+  }
+}
