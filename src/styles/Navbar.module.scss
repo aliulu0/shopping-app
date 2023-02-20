@@ -133,10 +133,7 @@
     cursor: pointer;
     z-index: 999;
   }
-  .mobileMenuLoginBtn{
-      color: $orange-color;
-  }
-  .mobileMenuBtn, .mobileMenuLoginBtn {
+  .mobileMenuBtn, .mobileMenuAccountBtn {
     font-size: 22px;
     width: 180px;
     height: 100px;

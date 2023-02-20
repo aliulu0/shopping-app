@@ -9,15 +9,18 @@ import logoImg from '../assets/images/logo.png';
 import { useNavigate } from 'react-router-dom';
 import { getCartItemsCount } from '../redux/cartSlice';
 import { useSelector } from 'react-redux';
+import Dropdown from './Dropdown'
 
 function Navbar() {
   const [showNav, setShowNav] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(false);
+  
   const [modalType, setModalType] = useState("");
-
   const cartItemsCount = useSelector(getCartItemsCount);
 
   const router = useNavigate();
+
   const handleShowModal = (text: string) => {
     setShowModal(!showModal);
     setModalType(text)
@@ -41,9 +44,10 @@ function Navbar() {
         <span className={styles.searchIcon}><FiSearch /></span>
       </div>
       <ul className={styles.navbarControls}>
-        <button className={styles.controlsItemProfile} onClick={() => handleShowModal("login")}>
-          <span><FaUser /></span>Login
+        <button className={styles.controlsItemProfile} onClick={() => setOpenDropdown(!openDropdown)}>
+          <span><FaUser /></span>Account
         </button>
+       {openDropdown && <Dropdown showModal={handleShowModal} />}
         <button className={styles.controlsItem} onClick={goToFavorites}><span><FaHeart /></span>Favorites</button>
         <button className={styles.controlsItem} onClick={goToCart} ><span><FaShoppingCart /></span>Cart ( {cartItemsCount} )</button>
         <button className={styles.controlsItemMenu} onClick={() => setShowNav(true)}>
@@ -60,7 +64,7 @@ function Navbar() {
               <FaTimes />
             </button>
             <ul className={styles.mobileMenuList}>
-              <button className={styles.mobileMenuLoginBtn} onClick={() => handleShowModal("account")}><span><FaUser /></span>Account</button>
+              <button className={styles.mobileMenuAccountBtn} onClick={() => handleShowModal("account")}><span><FaUser /></span>Account</button>
               <button className={styles.mobileMenuBtn}><span><FaHeart /></span>Favorites</button>
               <button className={styles.mobileMenuBtn} onClick={goToCart}><span><FaShoppingCart /></span>Cart</button>
               <button className={styles.mobileMenuBtn}>Language</button>

@@ -1,0 +1,64 @@
+@import "global.module.scss";
+.dropdownContainer{
+    position: absolute;
+    width: 200px;
+    border: 1px solid #dbdbdb;
+    color: black;
+    top: 80px;
+    z-index: 100;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: white;
+    font-size: 1.2rem;
+    height: fit-content;
+    box-shadow: 0 1px 5px rgba(160, 160, 160, 0.6);
+
+    .dropdownContent{
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        padding: 5px;
+
+        li{
+            cursor: pointer;
+        }
+    }
+    
+    .loginBtn{
+        background-color: $orange-color;
+        color: white;
+        padding: 5px 15px;
+        margin: 5px 0;
+        border-radius: 10px;
+    }
+    .registerBtn{
+        background-color: #e0e0e0;
+        margin: 5px 0;
+        padding: 5px 15px;
+        border-radius: 10px;
+    }
+    .dropdownItemTablet{
+        display: none;
+    }
+    .dropdownItem, .dropdownItemTablet{
+        background-color: $gray-color;
+        padding: 10px 15px;
+        margin: 5px 0;
+    }
+    .dropdownItem:hover{
+        background-color: #e0e0e0;
+    }
+}
+@include desktop{
+    .dropdownContainer{
+        right: 0;
+        .dropdownItemTablet{
+            display: block;
+        }
+    }
+}
+@include tabletLG{
+    .dropdownContainer{
+      display: none;
+    }
+}
