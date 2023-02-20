@@ -8,11 +8,10 @@ import LoginModal from './LoginModal'
 import logoImg from '../assets/images/logo.png';
 import { useNavigate } from 'react-router-dom';
 import { getCartItemsCount } from '../redux/cartSlice';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 
 function Navbar() {
   const [showNav, setShowNav] = useState(false);
-  const [isLogin, setIsLogin] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [modalType, setModalType] = useState("");
 
@@ -27,9 +26,12 @@ function Navbar() {
   const goToCart = () => {
     router("/cart");
   }
+  const goToFavorites = () => {
+    router("/favorites");
+  }
   return (
     <nav className={styles.navbarContainer}>
-      <div className={styles.navbarLogo}>
+      <div className={styles.navbarLogo} onClick={() => router("/")}>
         <img src={logoImg} alt="logo" />
         <span><BsShop /></span>
       </div>
@@ -42,7 +44,7 @@ function Navbar() {
         <button className={styles.controlsItemProfile} onClick={() => handleShowModal("login")}>
           <span><FaUser /></span>Login
         </button>
-        <button className={styles.controlsItem}><span><FaHeart /></span>Favorites</button>
+        <button className={styles.controlsItem} onClick={goToFavorites}><span><FaHeart /></span>Favorites</button>
         <button className={styles.controlsItem} onClick={goToCart} ><span><FaShoppingCart /></span>Cart ( {cartItemsCount} )</button>
         <button className={styles.controlsItemMenu} onClick={() => setShowNav(true)}>
           <FaBars />
@@ -53,24 +55,18 @@ function Navbar() {
       {
         showNav &&
         (<div className={styles.navbarControlsMobileMenu}>
-          <div className={styles.mobileMenuContent}></div>
-          <button className={styles.mobileMenuExitBtn} onClick={() => setShowNav(false)}>
-            <FaTimes />
-          </button>
-          {
-            !isLogin ?
-              <ul className={styles.mobileMenuList}>
-                <button className={styles.mobileMenuLoginBtn} onClick={() => handleShowModal("login")}><span><FaUser /></span>Login</button>
-                <button className={styles.mobileMenuBtn}><span><FaHeart /></span>Favorites</button>
-                <button className={styles.mobileMenuBtn} onClick={goToCart}  ><span><FaShoppingCart /></span>Cart</button>
-              </ul> :
-              <ul className={styles.mobileMenuList}>
-                <button className={styles.mobileMenuBtn}><span><FaUserCircle /></span>Profile</button>
-                <button className={styles.mobileMenuBtn}><span><FaHeart /></span>Favorites</button>
-                <button className={styles.mobileMenuBtn}><span><FaShoppingCart /></span>Cart</button>
-                <button className={styles.mobileMenuBtn}><span><BiLogOut /></span>Logout</button>
-              </ul>
-          }
+          <div className={styles.mobileMenuContent}>
+            <button className={styles.mobileMenuExitBtn} onClick={() => setShowNav(false)}>
+              <FaTimes />
+            </button>
+            <ul className={styles.mobileMenuList}>
+              <button className={styles.mobileMenuLoginBtn} onClick={() => handleShowModal("account")}><span><FaUser /></span>Account</button>
+              <button className={styles.mobileMenuBtn}><span><FaHeart /></span>Favorites</button>
+              <button className={styles.mobileMenuBtn} onClick={goToCart}><span><FaShoppingCart /></span>Cart</button>
+              <button className={styles.mobileMenuBtn}>Language</button>
+              <button className={styles.mobileMenuBtn}>Mode</button>
+            </ul>
+          </div>
         </div>)
       }
       {

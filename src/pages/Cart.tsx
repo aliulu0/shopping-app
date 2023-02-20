@@ -6,13 +6,16 @@ import { useAppDispatch } from '../redux/store';
 import styles from '../styles/Cart.module.scss';
 import { HiPlus, HiMinus } from 'react-icons/hi'
 import { MdAttachMoney } from 'react-icons/md'
+import { FaAngleLeft } from 'react-icons/fa'
 import { CartItem } from '../model/types';
+import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
   const carts = useSelector(getProductsInCart);
   const cartItemsCount = useSelector(getCartItemsCount);
   const cartTotalPrice = useSelector(getCartTotalAmount);
   const dispatch = useAppDispatch();
+  const router = useNavigate();
 
 
   const increaseQuantity = (cartItem:CartItem) => {
@@ -22,7 +25,7 @@ const Cart = () => {
   }
   
   const decreaseQuantity = (cartItem: CartItem) => {
-    if (cartItem.quantity && cartItem.quantity <= 1) {
+    if (cartItem?.quantity === 0) {
       dispatch(removeItemFromCart({productId:cartItem.id}))
     }else{
       dispatch(updateQuantity({ productId: cartItem.id, type: "DEC" }))
@@ -38,7 +41,7 @@ const Cart = () => {
   return (
     <div className={styles.cartContainer}>
       <Navbar />
-      <h2 className={styles.cartInfo}>My Cart ( {cartItemsCount} )</h2>
+      <h2 className={styles.cartInfo}><FaAngleLeft className={styles.infoIcon} onClick={() => router("/")}/> MyCart ( {cartItemsCount} )</h2>
       <div className={styles.cartContent}>
         {
           cartItemsCount === 0 ?

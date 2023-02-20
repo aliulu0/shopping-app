@@ -38,15 +38,14 @@ const cartSlice = createSlice({
                              newQuantity = item.stock
                         }
                         newTotalPrice = newQuantity * item.discountedPrice;
-                        state.totalAmount += item.totalPrice;
+                        item.totalPrice = newTotalPrice;
+                        state.totalAmount += item.discountedPrice;
                     }
                     
                     if (type === 'DEC') {
-                        if (item.quantity >= 1) {
-                            newQuantity--;
-                        }
+                        newQuantity--;
                         newTotalPrice = newQuantity * item.discountedPrice;
-                        state.totalAmount -= item.totalPrice;
+                        state.totalAmount -= item.discountedPrice;
                     }
                     return {...item, quantity: newQuantity, totalPrice: newTotalPrice}
                 }else {

@@ -3,12 +3,13 @@ import { Product } from '../model/types';
 import styles from '../styles/ProductCard.module.scss'
 import { BsStarFill } from 'react-icons/bs'
 import { FiHeart } from 'react-icons/fi'
-import { FaShoppingCart } from 'react-icons/fa'
+import { FaShoppingCart, FaHeart} from 'react-icons/fa'
 import { HiPlus, HiMinus } from 'react-icons/hi'
 import { MdAttachMoney } from 'react-icons/md'
 import { useAppDispatch } from '../redux/store';
 import { useSelector } from 'react-redux';
 import { addToCart, getProductsInCart, updateQuantity, removeItemFromCart } from '../redux/cartSlice';
+import { getAllFavorites, addToFavorite, removeFromFavorite } from '../redux/favoriteSlice';
 
 interface Props {
   product: Product;
@@ -20,7 +21,9 @@ const ProductCard: React.FC<Props> = ({ product }) => {
   const carts = useSelector(getProductsInCart);
   const existingItemInCart = carts.find(item => item.id === product.id);
   const [quantity, setQuantity] = useState(existingItemInCart?.quantity || 1);
-
+  const favorites = useSelector(getAllFavorites);
+  const existingItemInFavorites = favorites.find((item) => item.id === product.id);
+  
   const handleAddToCart = (product: Product) => {
     let totalPrice = quantity * product.discountedPrice;
     dispatch(addToCart({ ...product, quantity:1, totalPrice }))
@@ -36,17 +39,25 @@ const ProductCard: React.FC<Props> = ({ product }) => {
   }
   
   const decreaseQuantity = (productId:number) => {
-    if (existingItemInCart && existingItemInCart.quantity <= 1) {
+    if (existingItemInCart && existingItemInCart.quantity === 0) {
       dispatch(removeItemFromCart({productId}))
     }else{
       setQuantity(quantity - 1);
       dispatch(updateQuantity({ productId, type: "DEC" }))
     }
   }
+
+  const handleToggleFavorite = (product: Product) => {
+    if(!existingItemInFavorites){
+      dispatch(addToFavorite(product));
+    }else{
+      dispatch(removeFromFavorite({productId: product.id}))
+    }    
+  }
  
   return (
     <div className={styles.productContainer}>
-      <div className={styles.favoriteIcon}><span><FiHeart /></span></div>
+      <div className={styles.favoriteIcon} onClick={() => handleToggleFavorite(product)}>{!existingItemInFavorites ? <span><FiHeart className={styles.favoriteOutlineIcon}/></span> : <span><FaHeart className={styles.favoriteFillcon}/></span>}</div>
       <p className={styles.productCategory}>{product.category}</p>
       <img className={styles.productImg} src={product?.images[0]} alt="product" />
       <div className={styles.productInfo}>

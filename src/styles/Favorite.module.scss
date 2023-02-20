@@ -1,0 +1,45 @@
+@import "global.module.scss";
+.favoriteContainer {
+  width: 100%;
+  h2 {
+    display: flex;
+    align-items: center;
+    margin: 20px;
+    padding: 10px 20px;
+    .infoIcon{
+        margin-right: 10px;
+        font-size: 24px;
+        cursor: pointer;
+      }
+  }
+  .favoriteContent {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin: 10px auto;
+    padding: 20px 30px;
+    width: 97%;
+  }
+  .favoriteNullContent{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    margin: 10px auto;
+  }
+}
+@include desktop {
+  .favoriteContent {
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
+    gap: 2rem
+  }
+}
+@include mobile {
+  .favoriteContent {
+    width: 100%;
+    padding: 10px;
+    grid-template-columns: repeat(2, minmax(100px, 1fr));
+  }
+}

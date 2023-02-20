@@ -27,3 +27,7 @@ export interface ProductsState {
     itemsCount:number;
     totalAmount:number;
 }
+
+export interface FavoriteState{
+    favorites: Product[];
+}

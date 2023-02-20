@@ -14,13 +14,21 @@ const UserModal: React.FC<Props> = ({show,modalType}) => {
             <FaTimes />
           </button>
         <div className={styles.modalContent}>
-            {modalType === "login" ? 
+            {modalType === "account" ? 
             <form className={styles.formContainer}>
               <input type="text" placeholder='username' />
               <input type="text" placeholder='password' />
               <button>Login</button>
 
-            </form> : <div></div>}
+            </form> : 
+            <div>
+              <h4>Are you sure you want to remove the item from the cart?</h4>
+              <div>
+                <button>Remove the product from the cart</button>
+                <button>Remove the product from the cart & add to favorite.</button>
+              </div>
+            </div>
+            }
         </div>
     </div>
   )

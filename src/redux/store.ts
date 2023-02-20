@@ -2,10 +2,12 @@ import { configureStore } from "@reduxjs/toolkit";
 import {useDispatch} from 'react-redux';
 import productsReducer from './produtsSlice';
 import cartReducer from './cartSlice';
+import favoriteReducer from './favoriteSlice';
 export const store = configureStore({
     reducer:{
         productList: productsReducer,
-        cartList: cartReducer
+        cartList: cartReducer,
+        favoriteList: favoriteReducer,
     },
 });
 
