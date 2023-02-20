@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { Product } from "../model/types";
+import { ProductsState } from "../model/types";
 import type { RootState } from "./store";
 
 export const fetchProductsAsync = createAsyncThunk(
@@ -15,12 +15,6 @@ export const fetchProductsAsync = createAsyncThunk(
   }
 );
 
-interface ProductsState {
-  products: Product[];
-  status: "idle" | "loading" | "succeeded" | "failed";
-  error: string | null;
-}
-
 const initialState: ProductsState = {
   products: [],
   status: "idle",
@@ -35,6 +29,7 @@ const productsSlice = createSlice({
     builder
       .addCase(fetchProductsAsync.pending, (state) => {
         state.status = "loading";
+        state.error = null;
       })
       .addCase(fetchProductsAsync.fulfilled, (state, action) => {
         state.status = "succeeded";

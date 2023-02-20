@@ -10,7 +10,7 @@
   justify-content: space-around;
   border-radius: 10px;
   position: relative;
-  .productIcon {
+  .favoriteIcon {
     position: absolute;
     top: 3%;
     right: 5%;
@@ -25,8 +25,19 @@
     visibility: hidden;
     box-shadow: 0 1px 5px rgba(100, 100, 100, 0.6);
   }
-  .productIcon:hover {
+  .favoriteIcon:hover {
     color: $orange-color;
+  }
+  .productCategory{
+    background-color: $orange-color;
+    padding: 5px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: $gray-color;
+    font-size: 15px;
+    border-radius: 10px 10px 10px 0;
+    letter-spacing: 1px;
   }
   .productImg {
     width: 100%;
@@ -55,9 +66,10 @@
   }
   .productPrices {
     display: flex;
-    margin: 5px auto;
-    align-items: center;
+    margin: 5px 0;
     .oldPrice {
+      display: flex;
+      align-items: center;
       text-decoration: line-through;
       text-decoration-thickness: 2px;
       color: #bdbdbd;
@@ -65,11 +77,16 @@
       margin-right: 10px;
     }
     .newPrice {
+      display: flex;
+      align-items: center;
       color: $orange-color;
       font-size: 20px;
     }
   }
   .productCartBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     visibility: hidden;
     padding: 10px;
     border-radius: 10px;
@@ -80,29 +97,69 @@
     font-size: 18px;
     cursor: pointer;
     transition: visible 0.5s ease-in;
+    span{
+        
+        margin-right: 10px;
+    }
+  }
+  .updateCartContainer{
+    visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    h3{
+      border:1px solid #bdbdbd;
+      width: 25px;
+      height: 25px;
+      text-align: center;
+      padding: 10px;
+      border-radius: 10px;
+    }
+    .updateCartBtn{
+      background-color: $orange-color;
+      color: white;
+      padding: 5px;
+      width: 40px;
+      height: 40px;
+      margin: 0 10px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 22px;
+    }
   }
 }
 .productContainer:hover {
   .productCartBtn {
     visibility: visible;
   }
-  .productIcon {
+  .favoriteIcon {
+    visibility: visible;
+  }
+  .updateCartContainer{
     visibility: visible;
   }
 }
 @include desktop {
   .productContainer {
     max-width: 200px;
-    .productIcon {
-      padding: 10px;
+    .favoriteIcon {
+        width: 20px;
+        height: 25px;
+      font-size: 20px;
     }
   }
 }
 @include tabletLG {
   .productContainer {
     max-width: 150px;
-    .productIcon {
+    .favoriteIcon {
+        width: 18px;
+        height: 20px;
       font-size: 18px;
+    }
+    .productCategory{
+        font-size: 13px;
     }
     .productImg {
       width: 100%;
@@ -131,15 +188,35 @@
       padding: 8px;
       font-size: 15px;
     }
+    .updateCartContainer{
+      h3{
+        width: 25px;
+        height: 25px;
+        padding: 8px;
+      }
+    }
   }
 }
 @include mobile {
   .productContainer {
-    .productIcon {
-      font-size: 15px;
-    }
     .productImg {
       height: 150px;
+    }
+    .updateCartContainer{
+      h3{
+        width: 25px;
+        height: 25px;
+        padding: 8px;
+      }
+      .updateCartBtn{
+        width: 35px;
+        height: 35px;
+        margin: 0 10px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 18px;
+      }
     }
   }
 }

@@ -16,18 +16,22 @@ const ProductList = () => {
         }
     }, [dispatch, status])
 
-    if(status === "loading"){
+    if (status === "loading") {
         return <div>Loading...</div>
-    }else if(status === "failed"){
+    } else if (status === "failed") {
         return <div>Error: {error}</div>
     }
 
     return (
         <div className={styles.productListContainer}>
-        { status === "succeeded" &&
-        products.map((product) => 
-        <ProductCard key={product.id} product={product}/>
-        )}
+            {status === "succeeded" &&
+                products.map((product) => {
+                    let discountedPrice = product.price - ((product.price * product.discountPercentage) / 100);
+                    return (
+                        <ProductCard key={product.id} product={{...product,discountedPrice}} />
+                    )
+                }
+                )}
         </div>
     )
 }

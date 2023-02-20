@@ -9,7 +9,7 @@ function Home() {
         <Navbar/>
         <Slider />
         <div className={styles.content}>
-          <h1>All Products</h1>
+        <h1>All Products</h1>
           <ProductList />
         </div>
     </div>
