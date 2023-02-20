@@ -3,11 +3,13 @@ import {useDispatch} from 'react-redux';
 import productsReducer from './produtsSlice';
 import cartReducer from './cartSlice';
 import favoriteReducer from './favoriteSlice';
+import themeReducer from './themeSlice';
 export const store = configureStore({
     reducer:{
         productList: productsReducer,
         cartList: cartReducer,
         favoriteList: favoriteReducer,
+        theme:themeReducer,
     },
 });
 

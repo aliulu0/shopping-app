@@ -31,3 +31,7 @@ export interface ProductsState {
 export interface FavoriteState{
     favorites: Product[];
 }
+
+export interface ThemeState{
+  isDarkMode:boolean;
+}

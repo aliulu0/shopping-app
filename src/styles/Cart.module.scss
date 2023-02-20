@@ -2,6 +2,17 @@
 .cartContainer {
   width: 100%;
   overflow-x: hidden;
+  height: 100vh;
+
+  &.light{
+    color: #0a0a0a;
+    background-color: $gray-color;
+  }
+  &.dark{
+    color: $gray-color;
+    background-color: #0a0a0a;
+  }
+
   .cartInfo {
     margin-top: 20px !important;
     padding: 10px 20px;

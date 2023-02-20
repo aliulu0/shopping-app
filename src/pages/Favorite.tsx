@@ -6,13 +6,16 @@ import styles from '../styles/Favorite.module.scss';
 import Navbar from '../components/Navbar';
 import { FaAngleLeft } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom';
+import {isDarkMode} from '../redux/themeSlice';
 
 const Favorite = () => {
     const favorites = useSelector(getAllFavorites);
     const router = useNavigate();
+    const isDark = useSelector(isDarkMode);
+
 
     return (
-        <div className={styles.favoriteContainer}>
+        <div className={`${styles.favoriteContainer} ${isDark ? styles.dark : styles.light}`}>
             <Navbar />
             <h2><FaAngleLeft className={styles.infoIcon} onClick={() => router("/")} />Favorites</h2>
             {

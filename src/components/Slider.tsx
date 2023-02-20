@@ -4,7 +4,12 @@ import slideImg2 from "../assets/images/slide2.jpg"
 import slideImg3 from "../assets/images/slide3.jpg"
 import styles from '../styles/Slider.module.scss';
 import { MdOutlineArrowBackIosNew, MdOutlineArrowForwardIos } from 'react-icons/md';
+import {isDarkMode} from '../redux/themeSlice';
+import { useSelector } from 'react-redux';
+
 const Slider = () => {
+    const isDark = useSelector(isDarkMode);
+
     const timeRef:React.MutableRefObject<null> | React.MutableRefObject<any> = useRef(null);
     const [currentIndex, setCurrentIndex] = useState(0);
     const slides = [
@@ -51,7 +56,7 @@ const Slider = () => {
     
 
     return (
-        <div className={styles.sliderContainer}>
+        <div className={`${styles.sliderContainer} ${isDark ? styles.dark : styles.light}`}>
             <div className={styles.sliderContent}>
                 <div>
                     <div className={styles.sliderLeftArrow} onClick={goToPrevious}><MdOutlineArrowBackIosNew /></div>

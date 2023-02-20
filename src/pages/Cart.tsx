@@ -9,6 +9,7 @@ import { MdAttachMoney } from 'react-icons/md'
 import { FaAngleLeft } from 'react-icons/fa'
 import { CartItem } from '../model/types';
 import { useNavigate } from 'react-router-dom';
+import {isDarkMode} from '../redux/themeSlice';
 
 const Cart = () => {
   const carts = useSelector(getProductsInCart);
@@ -16,6 +17,8 @@ const Cart = () => {
   const cartTotalPrice = useSelector(getCartTotalAmount);
   const dispatch = useAppDispatch();
   const router = useNavigate();
+  const isDark = useSelector(isDarkMode);
+
 
 
   const increaseQuantity = (cartItem:CartItem) => {
@@ -39,7 +42,7 @@ const Cart = () => {
     dispatch(removeItemFromCart({productId: id}));
   }
   return (
-    <div className={styles.cartContainer}>
+    <div className={`${styles.cartContainer} ${isDark ? styles.dark : styles.light }`}>
       <Navbar />
       <h2 className={styles.cartInfo}><FaAngleLeft className={styles.infoIcon} onClick={() => router("/")}/> MyCart ( {cartItemsCount} )</h2>
       <div className={styles.cartContent}>
