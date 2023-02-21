@@ -2,8 +2,11 @@ import {createSlice} from '@reduxjs/toolkit';
 import { LanguageState } from '../model/types';
 import { RootState } from './store';
 
+const storedLanguage = JSON.parse(localStorage.getItem('language') || 'en');
+
+
 const initialState: LanguageState ={
-    language: "en",
+    language: storedLanguage,
 }
 
 const languageSlice = createSlice({
@@ -17,6 +20,7 @@ const languageSlice = createSlice({
             }else{
                 state.language = "en"
             }
+            localStorage.setItem('language', JSON.stringify(language));
         }
     }
 })

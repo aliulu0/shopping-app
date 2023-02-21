@@ -23,7 +23,7 @@ export interface ProductsState {
     totalPrice:number;
   }
  export interface CartState {
-    carts: CartItem[];
+    cart: CartItem[];
     itemsCount:number;
     totalAmount:number;
 }

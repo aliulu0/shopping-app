@@ -2,8 +2,11 @@ import { createSlice } from '@reduxjs/toolkit';
 import { FavoriteState } from '../model/types';
 import { RootState } from './store';
 
+
+const storedFaVorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+
 const initialState: FavoriteState ={
-    favorites: [],
+    favorites: storedFaVorites,
 }
 
 const favoriteSlice = createSlice({
@@ -16,10 +19,12 @@ const favoriteSlice = createSlice({
             if (!existInFavorite) {
                 state.favorites.push(product);
             }
+            localStorage.setItem('favorites', JSON.stringify(state.favorites))
         },
         removeFromFavorite: (state, action) => {
             const {productId} = action.payload;
             state.favorites = state.favorites.filter((item) => item.id !== productId);
+            localStorage.setItem('favorites', JSON.stringify(state.favorites))
         }
     }
 })
