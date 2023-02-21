@@ -3,7 +3,6 @@ import { FiSearch } from 'react-icons/fi'
 import { BsShop } from 'react-icons/bs'
 import { FaBars, FaTimes, FaUser, FaHeart, FaShoppingCart, FaSun, FaMoon, } from 'react-icons/fa'
 import styles from '../styles/Navbar.module.scss';
-import Modal from './Modal'
 import logoImg from '../assets/images/logo.png';
 import { useNavigate } from 'react-router-dom';
 import { getCartItemsCount } from '../redux/cartSlice';
@@ -18,9 +17,7 @@ import {getFilterText,setFilterText} from '../redux/filterSlice';
 
 function Navbar() {
   const [showNav, setShowNav] = useState(false);
-  const [showModal, setShowModal] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(false);
-  const [modalType, setModalType] = useState("");
   const cartItemsCount = useSelector(getCartItemsCount);
   const router = useNavigate();
   const dispatch = useAppDispatch();
@@ -28,10 +25,6 @@ function Navbar() {
   const currentLang = useSelector(language);
   const filterText = useSelector(getFilterText);
 
-  const handleShowModal = (text: string) => {
-    setShowModal(!showModal);
-    setModalType(text)
-  }
   const goToCart = () => {
     router("/cart");
   }
@@ -64,7 +57,7 @@ function Navbar() {
       </div>
       <ul className={styles.navbarControls}>
         <button className={styles.controlsItemProfile} onClick={() => setOpenDropdown(!openDropdown)}><span><FaUser /></span>{translate("account", currentLang)}</button>
-        {openDropdown && <Dropdown showModal={handleShowModal} />}
+         {openDropdown && <Dropdown showModal={() => {}} />} 
         <button className={styles.controlsItem} onClick={goToFavorites}><span><FaHeart /></span>{translate("favorites", currentLang)}</button>
         <button className={styles.controlsItem} onClick={goToCart} ><span><FaShoppingCart /></span>{translate("cart", currentLang)} ( {cartItemsCount} )</button>
         <button className={styles.controlsItemMenu} onClick={() => setShowNav(true)}>
@@ -81,7 +74,7 @@ function Navbar() {
               <FaTimes />
             </button>
             <ul className={styles.mobileMenuList}>
-              <button className={styles.mobileMenuAccountBtn} onClick={() => handleShowModal("account")}><span><FaUser /></span>{translate("account", currentLang)}</button>
+              <button className={styles.mobileMenuAccountBtn}><span><FaUser /></span>{translate("account", currentLang)}</button>
               <button className={styles.mobileMenuBtn}><span><FaHeart /></span>{translate("favorites", currentLang)}</button>
               <button className={styles.mobileMenuBtn} onClick={goToCart}><span><FaShoppingCart /></span>{translate("cart", currentLang)}</button>
               <button className={styles.mobileMenuBtn} onClick={handleToggleLang}><span><IoLanguage /></span>{translate("language", currentLang)}  : {currentLang}</button>
@@ -89,9 +82,6 @@ function Navbar() {
             </ul>
           </div>
         </div>)
-      }
-      {
-        showModal && <Modal show={handleShowModal} modalType={modalType} />
       }
     </nav>
   )

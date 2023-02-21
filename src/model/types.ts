@@ -41,3 +41,8 @@ export interface LanguageState{
 export interface filterState{
   filterText:string;
 }
+
+export interface modalState{
+  isOpenModal: boolean;
+  isFavorite:boolean;
+}

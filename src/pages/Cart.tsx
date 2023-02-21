@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
 import Navbar from '../components/Navbar';
 import { getProductsInCart, getCartItemsCount, getCartTotalAmount, updateQuantity, removeItemFromCart, clearCart } from '../redux/cartSlice';
@@ -9,9 +9,13 @@ import { MdAttachMoney } from 'react-icons/md'
 import { FaAngleLeft } from 'react-icons/fa'
 import { CartItem } from '../model/types';
 import { useNavigate } from 'react-router-dom';
-import {isDarkMode} from '../redux/themeSlice';
+import { isDarkMode } from '../redux/themeSlice';
 import { language } from '../redux/languageSlice'
 import { translate } from '../locales/index';
+import { getIsOpenModal, toggleModal, setIsFavorite } from '../redux/cartModalSlice'
+import { addToFavorite, getAllFavorites } from '../redux/favoriteSlice'
+import CartModal from '../components/CartModal';
+
 const Cart = () => {
   const carts = useSelector(getProductsInCart);
   const cartItemsCount = useSelector(getCartItemsCount);
@@ -20,17 +24,20 @@ const Cart = () => {
   const router = useNavigate();
   const isDark = useSelector(isDarkMode);
   const currentLang = useSelector(language);
+  const isOpenModal = useSelector(getIsOpenModal);
+  const favorites = useSelector(getAllFavorites);
+  const [selectedItem, setSelectedItem] = useState<CartItem | null>(null);
 
-  const increaseQuantity = (cartItem:CartItem) => {
+  const increaseQuantity = (cartItem: CartItem) => {
     if (cartItem.quantity > cartItem.stock) {
     }
-    dispatch(updateQuantity({ productId: cartItem.id, type:"INC" }))
+    dispatch(updateQuantity({ productId: cartItem.id, type: "INC" }))
   }
-  
+
   const decreaseQuantity = (cartItem: CartItem) => {
     if (cartItem?.quantity === 0) {
-      dispatch(removeItemFromCart({productId:cartItem.id}))
-    }else{
+      handleRemoveItemFromCart(cartItem)
+    } else {
       dispatch(updateQuantity({ productId: cartItem.id, type: "DEC" }))
     }
   }
@@ -38,33 +45,50 @@ const Cart = () => {
     dispatch(clearCart())
   }
 
-  const handleRemoveItemFromCart = (id:number) => {
-    dispatch(removeItemFromCart({productId: id}));
+  const handleRemoveItemFromCart = (cartItem: CartItem) => {
+    handleToggleModal();
+    setSelectedItem(cartItem);
+    dispatch(setIsFavorite({ favorites, productId: cartItem.id }));
   }
+  const handleRemoveItem = () => {
+    dispatch(removeItemFromCart({ productId: selectedItem?.id }));    
+    handleToggleModal();
+  }
+  const handleRemoveItemAndAddFavorites = () => {
+    dispatch(addToFavorite(selectedItem));
+    dispatch(removeItemFromCart({ productId: selectedItem?.id }));
+    handleToggleModal();
+  }
+
+  const handleToggleModal = () => {
+    dispatch(toggleModal());
+  }
+
   return (
-    <div className={`${styles.cartContainer} ${isDark ? styles.dark : styles.light }`}>
+    <div className={`${styles.cartContainer} ${isDark ? styles.dark : styles.light}`}>
       <Navbar />
-      <h2 className={styles.cartInfo}><FaAngleLeft className={styles.infoIcon} onClick={() => router("/")}/>{translate("cartHeader",currentLang)} ( {cartItemsCount} )</h2>
+      <h2 className={styles.cartInfo}><FaAngleLeft className={styles.infoIcon} onClick={() => router("/")} />{translate("cartHeader", currentLang)} ( {cartItemsCount} )</h2>
       <div className={styles.cartContent}>
+        {isOpenModal && <CartModal onClose={handleToggleModal} onRemove={handleRemoveItem} onRemoveAndAddFavorites={handleRemoveItemAndAddFavorites} />}
         {
           cartItemsCount === 0 ?
-            <div className={styles.cartItemsCount}>
-              <h2>{translate("emptyCart",currentLang)}</h2>
+          <div className={styles.cartItemsCount}>
+              <h2>{translate("emptyCart", currentLang)}</h2>
             </div>
             :
             <>
               <div className={styles.cartProductInfo}>
                 <div className={styles.cartItemsTitles}>
-                  <h3 className={styles.productTitle}>{translate("product",currentLang)}</h3>
-                  <h3 className={styles.unitPriceTitle}>{translate("unitPrice",currentLang)}</h3>
-                  <h3 className={styles.quantityTitle}>{translate("quantity",currentLang)}</h3>
-                  <h3 className={styles.totalPriceTitle}>{translate("totalPrice",currentLang)}</h3>
+                  <h3 className={styles.productTitle}>{translate("product", currentLang)}</h3>
+                  <h3 className={styles.unitPriceTitle}>{translate("unitPrice", currentLang)}</h3>
+                  <h3 className={styles.quantityTitle}>{translate("quantity", currentLang)}</h3>
+                  <h3 className={styles.totalPriceTitle}>{translate("totalPrice", currentLang)}</h3>
                 </div>
                 <div className={styles.cartItems}>
                   {
                     carts?.map((cartItem) => (
                       <div key={cartItem.id} className={styles.cartItem}>
-                        <button className={styles.removeItemBtn} onClick={() => handleRemoveItemFromCart(cartItem.id)}><HiMinus /></button>
+                        <button className={styles.removeItemBtn} onClick={() => handleRemoveItemFromCart(cartItem)}><HiMinus /></button>
                         <div className={styles.cartProduct}>
                           <img src={cartItem.images[0]} alt={cartItem.brand} />
                           <div>
@@ -86,14 +110,14 @@ const Cart = () => {
                 </div>
               </div>
               <div className={styles.cartSummary}>
-                <button className={styles.cartSummaryBtn} onClick={handleClearCart}>{translate("clear",currentLang)}</button>
+                <button className={styles.cartSummaryBtn} onClick={handleClearCart}>{translate("clear", currentLang)}</button>
                 <div className={styles.cartChekout}>
                   <div className={styles.total}>
-                    <span>{translate("total",currentLang)}</span>
+                    <span>{translate("total", currentLang)}</span>
                     <span className={styles.amount}><MdAttachMoney />{cartTotalPrice.toFixed(2)}</span>
                   </div>
                 </div>
-                <button className={styles.cartSummaryBtn}>{translate("checkout",currentLang)}</button>
+                <button className={styles.cartSummaryBtn}>{translate("checkout", currentLang)}</button>
               </div>
             </>
         }

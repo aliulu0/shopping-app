@@ -12,7 +12,10 @@ const favoriteSlice = createSlice({
     reducers:{
         addToFavorite:(state, action) => {
             const product = action.payload;
-            state.favorites.push(product);
+            const existInFavorite = state.favorites.find((item) => item.id === product.id);
+            if (!existInFavorite) {
+                state.favorites.push(product);
+            }
         },
         removeFromFavorite: (state, action) => {
             const {productId} = action.payload;

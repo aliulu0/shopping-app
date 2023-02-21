@@ -6,6 +6,7 @@ import favoriteReducer from './favoriteSlice';
 import themeReducer from './themeSlice';
 import languageReducer from './languageSlice';
 import filterReducer from "./filterSlice";
+import cartModalReducer from "./cartModalSlice";
 export const store = configureStore({
     reducer:{
         productList: productsReducer,
@@ -13,7 +14,8 @@ export const store = configureStore({
         favoriteList: favoriteReducer,
         theme:themeReducer,
         language: languageReducer,
-        filter: filterReducer
+        filter: filterReducer,
+        cartModal: cartModalReducer
     },
 });
 
