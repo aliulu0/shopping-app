@@ -35,3 +35,6 @@ export interface FavoriteState{
 export interface ThemeState{
   isDarkMode:boolean;
 }
+export interface LanguageState{
+  language:string;
+}

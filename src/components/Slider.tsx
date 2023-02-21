@@ -6,24 +6,27 @@ import styles from '../styles/Slider.module.scss';
 import { MdOutlineArrowBackIosNew, MdOutlineArrowForwardIos } from 'react-icons/md';
 import {isDarkMode} from '../redux/themeSlice';
 import { useSelector } from 'react-redux';
+import { language } from '../redux/languageSlice'
+import { translate } from '../locales/index';
 
 const Slider = () => {
     const isDark = useSelector(isDarkMode);
-
     const timeRef:React.MutableRefObject<null> | React.MutableRefObject<any> = useRef(null);
     const [currentIndex, setCurrentIndex] = useState(0);
+  const currentLang = useSelector(language);
+
     const slides = [
         {
             img: slideImg1,
-            title: "Shop Computers & Accessories"
+            title: `${translate("slide1Text", currentLang)}`
         },
         {
             img: slideImg2,
-            title: "Refresh Your Home"
+            title: `${translate("slide2Text", currentLang)}`
         },
         {
             img: slideImg3,
-            title: "Discover Our Beatuy Selection"
+            title: `${translate("slide3Text", currentLang)}`
         }
     ]
 

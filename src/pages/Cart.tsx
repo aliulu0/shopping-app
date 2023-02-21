@@ -10,7 +10,8 @@ import { FaAngleLeft } from 'react-icons/fa'
 import { CartItem } from '../model/types';
 import { useNavigate } from 'react-router-dom';
 import {isDarkMode} from '../redux/themeSlice';
-
+import { language } from '../redux/languageSlice'
+import { translate } from '../locales/index';
 const Cart = () => {
   const carts = useSelector(getProductsInCart);
   const cartItemsCount = useSelector(getCartItemsCount);
@@ -18,8 +19,7 @@ const Cart = () => {
   const dispatch = useAppDispatch();
   const router = useNavigate();
   const isDark = useSelector(isDarkMode);
-
-
+  const currentLang = useSelector(language);
 
   const increaseQuantity = (cartItem:CartItem) => {
     if (cartItem.quantity > cartItem.stock) {
@@ -44,21 +44,21 @@ const Cart = () => {
   return (
     <div className={`${styles.cartContainer} ${isDark ? styles.dark : styles.light }`}>
       <Navbar />
-      <h2 className={styles.cartInfo}><FaAngleLeft className={styles.infoIcon} onClick={() => router("/")}/> MyCart ( {cartItemsCount} )</h2>
+      <h2 className={styles.cartInfo}><FaAngleLeft className={styles.infoIcon} onClick={() => router("/")}/>{translate("cartHeader",currentLang)} ( {cartItemsCount} )</h2>
       <div className={styles.cartContent}>
         {
           cartItemsCount === 0 ?
             <div className={styles.cartItemsCount}>
-              <h2>Your cart is currently empty</h2>
+              <h2>{translate("emptyCart",currentLang)}</h2>
             </div>
             :
             <>
               <div className={styles.cartProductInfo}>
                 <div className={styles.cartItemsTitles}>
-                  <h3 className={styles.productTitle}>Product</h3>
-                  <h3 className={styles.unitPriceTitle}>Unit Price</h3>
-                  <h3 className={styles.quantityTitle}>Quantity</h3>
-                  <h3 className={styles.totalPriceTitle}>Total Price</h3>
+                  <h3 className={styles.productTitle}>{translate("product",currentLang)}</h3>
+                  <h3 className={styles.unitPriceTitle}>{translate("unitPrice",currentLang)}</h3>
+                  <h3 className={styles.quantityTitle}>{translate("quantity",currentLang)}</h3>
+                  <h3 className={styles.totalPriceTitle}>{translate("totalPrice",currentLang)}</h3>
                 </div>
                 <div className={styles.cartItems}>
                   {
@@ -86,14 +86,14 @@ const Cart = () => {
                 </div>
               </div>
               <div className={styles.cartSummary}>
-                <button className={styles.cartSummaryBtn} onClick={handleClearCart}>Clear Cart</button>
+                <button className={styles.cartSummaryBtn} onClick={handleClearCart}>{translate("clear",currentLang)}</button>
                 <div className={styles.cartChekout}>
                   <div className={styles.total}>
-                    <span>Total</span>
+                    <span>{translate("total",currentLang)}</span>
                     <span className={styles.amount}><MdAttachMoney />{cartTotalPrice.toFixed(2)}</span>
                   </div>
                 </div>
-                <button className={styles.cartSummaryBtn}>Check out</button>
+                <button className={styles.cartSummaryBtn}>{translate("checkout",currentLang)}</button>
               </div>
             </>
         }

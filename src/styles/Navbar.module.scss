@@ -138,7 +138,14 @@
     background-color: transparent;
     cursor: pointer;
     z-index: 999;
-    color: $gray-color;
+    &.light {
+      color: #0a0a0a;
+      background-color: $gray-color;
+    }
+    &.dark {
+      color: $gray-color;
+      background-color: #0a0a0a;
+    }
   }
   .mobileMenuBtn, .mobileMenuAccountBtn {
     font-size: 22px;
@@ -212,6 +219,7 @@
         width: 35px;
       }
     }
+    
     .mobileMenuList {
       right: 5%;
     }
