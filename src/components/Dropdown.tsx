@@ -40,4 +40,4 @@ const DropdownProfile: React.FC<Props> = ({ onGoToAccount }) => {
   )
 }
 
-export default React.memo(DropdownProfile);
+export default DropdownProfile;
