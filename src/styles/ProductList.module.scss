@@ -5,7 +5,12 @@
     gap: 1rem;
     margin:10px auto;
     padding: 10px;
-    width: 80%;
+    width: 60%;
+    .status{
+        font-size: 20px;
+        width: 100%;
+        text-align: center;
+    }
 }
 @include desktop{
     .productListContainer{

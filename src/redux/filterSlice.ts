@@ -6,16 +6,17 @@ const initialState: filterState ={
     filterText: "",
 }
 
-const sortProductSlice = createSlice({
+const filterSlice = createSlice({
     name: 'filter',
     initialState,
     reducers:{
+        // filter text
         setFilterText: (state, actions) => {
             state.filterText = actions.payload;
         }
     }
 })
 
-export const {setFilterText} = sortProductSlice.actions;
+export const {setFilterText} = filterSlice.actions;
 export const getFilterText = (state: RootState) => state.filter.filterText;
-export default sortProductSlice.reducer;
+export default filterSlice.reducer;

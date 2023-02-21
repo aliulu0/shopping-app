@@ -39,11 +39,15 @@ function Navbar() {
   const handleToggleLang = () => {
     dispatch(setLanguage(currentLang));
   }
+  // toggle dropdown
   const handleToggleDropdown = () => {
     setOpenDropdown(!openDropdown)
   }
+  const goToAccountPage = () => {
+    router("/account");
+  }
 
-  // search for products
+  // filter products
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement> ) => {
     dispatch(setFilterText(event.target.value));
   }
@@ -60,7 +64,7 @@ function Navbar() {
       </div>
       <ul className={styles.navbarControls}>
         <button className={styles.controlsItemProfile} onClick={handleToggleDropdown}><span><FaUser /></span>{translate("account", currentLang)}</button>
-         {openDropdown && <Dropdown showModal={() => {}} />} 
+         {openDropdown && <Dropdown onGoToAccount={goToAccountPage} />} 
         <button className={styles.controlsItem} onClick={goToFavorites}><span><FaHeart /></span>{translate("favorites", currentLang)}</button>
         <button className={styles.controlsItem} onClick={goToCart} ><span><FaShoppingCart /></span>{translate("cart", currentLang)} ( {cartItemsCount} )</button>
         <button className={styles.controlsItemMenu} onClick={() => setShowNav(true)}>
@@ -77,7 +81,7 @@ function Navbar() {
               <FaTimes />
             </button>
             <ul className={styles.mobileMenuList}>
-              <button className={styles.mobileMenuAccountBtn}><span><FaUser /></span>{translate("account", currentLang)}</button>
+              <button className={styles.mobileMenuAccountBtn} onClick={goToAccountPage}><span><FaUser /></span>{translate("account", currentLang)}</button>
               <button className={styles.mobileMenuBtn}><span><FaHeart /></span>{translate("favorites", currentLang)}</button>
               <button className={styles.mobileMenuBtn} onClick={goToCart}><span><FaShoppingCart /></span>{translate("cart", currentLang)}</button>
               <button className={styles.mobileMenuBtn} onClick={handleToggleLang}><span><IoLanguage /></span>{translate("language", currentLang)}  : {currentLang}</button>
@@ -90,4 +94,4 @@ function Navbar() {
   )
 }
 
-export default Navbar
+export default React.memo(Navbar);

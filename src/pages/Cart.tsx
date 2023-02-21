@@ -28,12 +28,14 @@ const Cart = () => {
   const favorites = useSelector(getAllFavorites);
   const [selectedItem, setSelectedItem] = useState<CartItem | null>(null);
 
+  // update quantity (increase quantity)
   const increaseQuantity = (cartItem: CartItem) => {
     if (cartItem.quantity > cartItem.stock) {
     }
     dispatch(updateQuantity({ productId: cartItem.id, type: "INC" }))
   }
 
+  // update quantity (decrease quantity)
   const decreaseQuantity = (cartItem: CartItem) => {
     if (cartItem?.quantity === 0) {
       handleRemoveItemFromCart(cartItem)
@@ -41,6 +43,7 @@ const Cart = () => {
       dispatch(updateQuantity({ productId: cartItem.id, type: "DEC" }))
     }
   }
+  // clear the cart items
   const handleClearCart = () => {
     dispatch(clearCart())
   }
@@ -48,18 +51,23 @@ const Cart = () => {
   const handleRemoveItemFromCart = (cartItem: CartItem) => {
     handleToggleModal();
     setSelectedItem(cartItem);
+
+    // is the item in the favorites?
     dispatch(setIsFavorite({ favorites, productId: cartItem.id }));
   }
+  // remove item from cart
   const handleRemoveItem = () => {
     dispatch(removeItemFromCart({ productId: selectedItem?.id }));    
     handleToggleModal();
   }
+  // remove item from cart and add to favorites
   const handleRemoveItemAndAddFavorites = () => {
     dispatch(addToFavorite(selectedItem));
     dispatch(removeItemFromCart({ productId: selectedItem?.id }));
     handleToggleModal();
   }
 
+  // toggle modal
   const handleToggleModal = () => {
     dispatch(toggleModal());
   }

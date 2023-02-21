@@ -4,7 +4,6 @@ import { RootState } from './store';
 
 const storedLanguage = JSON.parse(localStorage.getItem('language') || 'en');
 
-
 const initialState: LanguageState ={
     language: storedLanguage,
 }

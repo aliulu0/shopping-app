@@ -13,6 +13,7 @@ function Home() {
   const currentLang = useSelector(language);
   const [sortType, setSortType] = useState("default")
 
+  // sort items by rating, price increment and price decrement
   const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSortType(event.target.value);
   }

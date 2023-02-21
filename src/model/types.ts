@@ -46,3 +46,26 @@ export interface modalState{
   isOpenModal: boolean;
   isFavorite:boolean;
 }
+
+export interface Address {
+  id:number;
+  city: string;
+  district: string;
+  address: string;
+  name: string;
+  surname: string;
+  phone: number;
+  doorNumber?: number;
+}
+export interface AddressState{
+  addresses:Address[];
+}
+export interface AddressFormValues{
+  city: string;
+  district: string;
+  address: string;
+  name: string;
+  surname: string;
+  phone: number;
+  doorNumber?: number;
+}

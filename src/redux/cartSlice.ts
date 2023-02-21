@@ -16,6 +16,8 @@ const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
+
+        // add items to cart
         addToCart: (state, action) => {
 
             state.cart.push(action.payload);
@@ -25,6 +27,7 @@ const cartSlice = createSlice({
             localStorage.setItem('itemsCount', JSON.stringify(state.itemsCount));
             localStorage.setItem('totalAmount', JSON.stringify(state.totalAmount));
         },
+        // remove item from cart
         removeItemFromCart: (state, action) => {
             const { productId } = action.payload;
             const existingItem = state.cart.find(item => item.id === productId);
@@ -37,6 +40,7 @@ const cartSlice = createSlice({
             localStorage.setItem('itemsCount', JSON.stringify(state.itemsCount));
             localStorage.setItem('totalAmount', JSON.stringify(state.totalAmount));
         },
+        // update quantity
         updateQuantity: (state, action) => {
             const { productId, type } = action.payload;
             const newCart = state.cart.map((item) => {
@@ -70,6 +74,7 @@ const cartSlice = createSlice({
             localStorage.setItem('totalAmount', JSON.stringify(state.totalAmount));
            
         },
+        // clear all cart items
         clearCart: (state) => {
             state.cart = [];
             state.itemsCount = 0;

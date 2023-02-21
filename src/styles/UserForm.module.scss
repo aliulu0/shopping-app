@@ -1,0 +1,46 @@
+@import "global.module.scss";
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  height: fit-content;
+  padding: 10px;
+  box-shadow: 0 1px 5px rgba(100, 100, 100, 0.6);
+  border-radius: 10px;
+  .form {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      font-size: 18px;
+      padding: 10px;
+      width: 100%;
+      input, button{
+          border-radius: 10px;
+          margin: 8px auto;
+          padding: 15px;
+      }
+      input{
+          width: 70%;
+          border: 1px solid $orange-color;
+          font-size: 18px;
+        }
+        button{
+            background-color: $orange-color;
+            color: white;
+            width: 78%;
+            border: none;
+        }
+        .error{
+          width: 100%;
+          justify-content: center;
+          font-size: 15px;
+          margin: 5px;
+          color: $orange-color;
+        }
+  }
+}
+@include tabletLG{
+  .formContainer{
+      width: 90%;
+  }
+}

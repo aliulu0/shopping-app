@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { ProductsState } from "../model/types";
 import type { RootState } from "./store";
 
+// get all products from the API
 export const fetchProductsAsync = createAsyncThunk(
   "products/fetchProducts",
   async () => {

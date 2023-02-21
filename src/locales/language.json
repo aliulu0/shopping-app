@@ -30,7 +30,21 @@
         "priceDesc": "Price Descending",
         "cartModalHeader": "Are you sure you want to remove the item from the cart?",
         "removeItemFromCart": "Remove the product from the cart",
-        "removeItemFromCartAndAddToFavorites": "Remove the product from the cart & add to favorite"
+        "removeItemFromCartAndAddToFavorites": "Remove the product from the cart & add to favorite",
+        "accountPageHeader": "My Addresses",
+        "emptyAccountPage": "Your address is currently empty",
+        "doorNo": "Door No:",
+        "city":"City",
+        "district":"District",
+        "address":"Address",
+        "name":"Name",
+        "surname":"Surname",
+        "phone":"Phone",
+        "doorNumber":"Door Number",
+        "submit":"Submit",
+        "loading": "Loading",
+        "error": "Error"
+
     },
     "tr": {
         "searchPlaceholder": "Ürün Ara",
@@ -64,6 +78,19 @@
         "priceDesc": "Fiyat: Azalan",
         "cartModalHeader": "Ürünü sepetten kaldırmak istediğinizden emin misiniz?",
         "removeItemFromCart": "Ürünü sepetten kaldırın",
-        "removeItemFromCartAndAddToFavorites": "Ürünü sepetten kaldırın ve favorilere ekleyin"
+        "removeItemFromCartAndAddToFavorites": "Ürünü sepetten kaldırın ve favorilere ekleyin",
+        "accountPageHeader": "Adreslerim",
+        "emptyAccountPage": "Adresleriniz şu anda boş",
+        "doorNo": "Kapı no:",
+        "city":"Şehir",
+        "district":"İlçe",
+        "address":"Adres",
+        "name":"İsim",
+        "surname":"Soyisim",
+        "phone":"Telefon",
+        "doorNumber":"Kapı Numarası",
+        "submit":"Gönder",
+        "loading": "Yükleniyor",
+        "error": "Hata"
     }
 }

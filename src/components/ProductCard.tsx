@@ -27,12 +27,14 @@ const ProductCard: React.FC<Props> = ({ product }) => {
   const [selectedItem, setSelectedItem] = useState<Product | null>(null);
   const isOpenModal = useSelector(getIsOpenModal);
 
+  // add item to cart
   const handleAddToCart = (product: Product) => {
     let totalPrice = quantity * product.discountedPrice;
     dispatch(addToCart({ ...product, quantity: 1, totalPrice }))
     setQuantity(1);
   }
 
+  // update quantity (increase quantity)
   const increaseQuantity = (productId: number) => {
     setQuantity(quantity + 1);
     if (quantity > product.stock) {
@@ -41,6 +43,7 @@ const ProductCard: React.FC<Props> = ({ product }) => {
     dispatch(updateQuantity({ productId, type: "INC" }))
   }
 
+  // update quantity (decrease quantity)
   const decreaseQuantity = (product: Product) => {
     if (existingItemInCart && existingItemInCart.quantity === 0) {
       handleRemoveItemFromCart(product);
@@ -49,29 +52,35 @@ const ProductCard: React.FC<Props> = ({ product }) => {
       dispatch(updateQuantity({ productId: product.id, type: "DEC" }))
     }
   }
+  // is the item in the favorites?
   const handleRemoveItemFromCart = (cartItem: Product) => {
     handleToggleModal();
     setSelectedItem(cartItem);
     dispatch(setIsFavorite({ favorites, productId: cartItem.id }));
   }
+  // remove item from cart
   const handleRemoveItem = () => {
     dispatch(removeItemFromCart({ productId: selectedItem?.id }));
     handleToggleModal();
   }
+  // remove item from cart and add to favorites
   const handleRemoveItemAndAddFavorites = () => {
     dispatch(addToFavorite(selectedItem));
     dispatch(removeItemFromCart({ productId: selectedItem?.id }));
     handleToggleModal();
   }
 
+  // toggle modal
   const handleToggleModal = () => {
     dispatch(toggleModal());
   }
 
   const handleToggleFavorite = (product: Product) => {
     if (!existingItemInFavorites) {
+      // add product to favorites
       dispatch(addToFavorite(product));
     } else {
+      // delete product from favorites
       dispatch(removeFromFavorite({ productId: product.id }))
     }
   }

@@ -7,6 +7,8 @@ import themeReducer from './themeSlice';
 import languageReducer from './languageSlice';
 import filterReducer from "./filterSlice";
 import cartModalReducer from "./cartModalSlice";
+import addressesReducer from "../redux/addressSlice";
+
 export const store = configureStore({
     reducer:{
         productList: productsReducer,
@@ -15,7 +17,8 @@ export const store = configureStore({
         theme:themeReducer,
         language: languageReducer,
         filter: filterReducer,
-        cartModal: cartModalReducer
+        cartModal: cartModalReducer,
+        addresses: addressesReducer
     },
 });
 

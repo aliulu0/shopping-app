@@ -11,7 +11,7 @@ interface Props{
   onRemove:() => void;
   onRemoveAndAddFavorites:() => void;
 }
-const UserModal: React.FC<Props> = ({onClose, onRemove,onRemoveAndAddFavorites}) => {
+const CartModal: React.FC<Props> = ({onClose, onRemove,onRemoveAndAddFavorites}) => {
   const isFavorite = useSelector(getIsFavorite);
   const currentLang = useSelector(language);
   const isDark = useSelector(isDarkMode)
@@ -36,4 +36,4 @@ const UserModal: React.FC<Props> = ({onClose, onRemove,onRemoveAndAddFavorites})
   )
 }
 
-export default UserModal
+export default CartModal

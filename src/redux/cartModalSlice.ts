@@ -11,11 +11,12 @@ const modalSlice = createSlice({
     name: 'cartModal',
     initialState,
     reducers:{
+        // toggle modal
         toggleModal: (state) => {
             state.isOpenModal = !state.isOpenModal;
         },
-        setIsFavorite: (state,actions) => {
-            const {favorites, productId} = actions.payload;
+        setIsFavorite: (state,action) => {
+            const {favorites, productId} = action.payload;
             const existInFavorite = favorites.find((item:CartItem) => item.id === productId);
             if (existInFavorite) {
                 state.isFavorite = true;

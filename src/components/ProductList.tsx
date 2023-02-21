@@ -5,7 +5,8 @@ import { fetchProductsAsync, getAllProducts, getAllProductsStatus, getError } fr
 import ProductCard from './ProductCard';
 import styles from '../styles/ProductList.module.scss'
 import {getFilterText} from '../redux/filterSlice';
-
+import {language} from '../redux/languageSlice'
+import { translate } from '../locales';
 interface Props{
     sortType: string
 }
@@ -17,6 +18,7 @@ const ProductList:React.FC<Props> = ({sortType}) => {
     const status = useSelector(getAllProductsStatus);
     const error = useSelector(getError);
     const filterText = useSelector(getFilterText);
+    const currentLang = useSelector(language);
 
     const sortedProducts = useMemo(() => {
         switch (sortType) {
@@ -38,9 +40,9 @@ const ProductList:React.FC<Props> = ({sortType}) => {
     }, [dispatch, status])
     
     if (status === "loading") {
-        return <div>Loading...</div>
+        return <div className={styles.status}>{translate("loading",currentLang)}...</div>
     } else if (status === "failed") {
-        return <div>Error: {error}</div>
+        return <div className={styles.status}>{translate("error",currentLang)}: {error}</div>
     }
     const filteredProducts = sortedProducts.filter((product) =>
     product.title.toLowerCase().includes(filterText.toLowerCase()) ||

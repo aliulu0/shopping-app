@@ -29,18 +29,21 @@ const Slider = () => {
             title: `${translate("slide3Text", currentLang)}`
         }
     ]
-
+    // previous slide
     const goToPrevious = () => {
         const isFirstSlide = currentIndex === 0;
         const newIndex = isFirstSlide ? slides.length - 1 : currentIndex - 1;
         setCurrentIndex(newIndex);
     };
 
+    // next slide
     const goToNext = useCallback(() => {
         const isLastSlide = currentIndex === slides.length - 1;
         const newIndex = isLastSlide ? 0 : currentIndex + 1;
         setCurrentIndex(newIndex);
     },[currentIndex, slides.length])
+
+    // selected slide
     const goToSlide = (slideIndex: number) => {
         setCurrentIndex(slideIndex)
     }
@@ -82,4 +85,4 @@ const Slider = () => {
     )
 }
 
-export default Slider
+export default React.memo(Slider);
