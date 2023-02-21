@@ -10,7 +10,7 @@ import {translate} from '../locales/index';
 import {IoLanguage} from 'react-icons/io5';
 
 interface Props {
-  showModal: (text: string) => void;
+  showModal: () => void;
 }
 const DropdownProfile: React.FC<Props> = ({ showModal }) => {
     const router = useNavigate();
@@ -30,7 +30,7 @@ const DropdownProfile: React.FC<Props> = ({ showModal }) => {
 
     <div className={`${styles.dropdownContainer} ${isDark ? styles.dark : styles.light}`}>
       <ul className={styles.dropdownContent}>
-        <li className={styles.dropdownItem} onClick={() => showModal("account")}><span className={styles.dropdownIcon}><FaUserAlt/></span>{translate("account", currentLang)}</li>
+        <li className={styles.dropdownItem} onClick={() => showModal()}><span className={styles.dropdownIcon}><FaUserAlt/></span>{translate("account", currentLang)}</li>
         <li className={styles.dropdownItemTablet} onClick={() => router("/favorites")}><span className={styles.dropdownIcon}><FaHeart/></span>{translate("favorites", currentLang)}</li>
         <li className={styles.dropdownItemTablet} onClick={() => router("/cart")}><span className={styles.dropdownIcon}><FaShoppingCart/></span>{translate("cart", currentLang)}</li>
         <li className={styles.dropdownItem}onClick={handleToggleLang}><span className={styles.dropdownIcon}><IoLanguage/></span>{translate("language", currentLang)}  : {currentLang}</li>

@@ -39,6 +39,9 @@ function Navbar() {
   const handleToggleLang = () => {
     dispatch(setLanguage(currentLang));
   }
+  const handleToggleDropdown = () => {
+    setOpenDropdown(!openDropdown)
+  }
 
   // search for products
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement> ) => {
@@ -56,7 +59,7 @@ function Navbar() {
         <span className={styles.searchIcon}><FiSearch /></span>
       </div>
       <ul className={styles.navbarControls}>
-        <button className={styles.controlsItemProfile} onClick={() => setOpenDropdown(!openDropdown)}><span><FaUser /></span>{translate("account", currentLang)}</button>
+        <button className={styles.controlsItemProfile} onClick={handleToggleDropdown}><span><FaUser /></span>{translate("account", currentLang)}</button>
          {openDropdown && <Dropdown showModal={() => {}} />} 
         <button className={styles.controlsItem} onClick={goToFavorites}><span><FaHeart /></span>{translate("favorites", currentLang)}</button>
         <button className={styles.controlsItem} onClick={goToCart} ><span><FaShoppingCart /></span>{translate("cart", currentLang)} ( {cartItemsCount} )</button>
