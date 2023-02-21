@@ -10,12 +10,14 @@ import { HiMinus } from 'react-icons/hi'
 import UserForm from '../components/UserForm';
 import { language } from '../redux/languageSlice'
 import { translate } from '../locales/index';
+import { isDarkMode } from '../redux/themeSlice';
 
 const AccountPage = () => {
     const router = useNavigate();
     const addresses = useSelector(getAllAddresses);
     const dispatch = useAppDispatch();
   const currentLang = useSelector(language);
+  const isDark = useSelector(isDarkMode);
     
     // remove address
     const handleRemoveAddress = (id:number) => {
@@ -23,7 +25,7 @@ const AccountPage = () => {
     }
 
     return (
-        <div className={styles.container}>
+        <div className={`${styles.container} ${isDark ? styles.dark : styles.light}`}>
             <Navbar />
             <h2 className={styles.addresHeader}><FaAngleLeft className={styles.infoIcon} onClick={() => router("/")} />{translate("accountPageHeader",currentLang)}</h2>
             <div className={styles.content}>

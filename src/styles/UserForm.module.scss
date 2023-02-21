@@ -7,6 +7,14 @@
   padding: 10px;
   box-shadow: 0 1px 5px rgba(100, 100, 100, 0.6);
   border-radius: 10px;
+  &.light{
+    color: #0a0a0a;
+    background-color: $gray-color;
+  }
+  &.dark{
+    color: $gray-color;
+    background-color: #0a0a0a;
+  }
   .form {
       display: flex;
       flex-direction: column;
@@ -29,8 +37,10 @@
             color: white;
             width: 78%;
             border: none;
+            cursor: pointer;
         }
         .error{
+          text-align: center;
           width: 100%;
           justify-content: center;
           font-size: 15px;

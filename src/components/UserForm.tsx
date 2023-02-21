@@ -7,14 +7,15 @@ import { useAppDispatch } from '../redux/store';
 import { language } from '../redux/languageSlice'
 import { translate } from '../locales/index';
 import { useSelector } from 'react-redux';
+import { isDarkMode } from '../redux/themeSlice';
 
 const UserForm = () => {
 
-
+    const currentLang = useSelector(language);
     const dispatch = useAppDispatch();
-  const currentLang = useSelector(language);
+    const isDark = useSelector(isDarkMode);
 
-    const { handleSubmit, handleChange, values, errors } = useFormik({
+    const { handleSubmit, handleChange, values, errors, touched, handleBlur, handleReset } = useFormik({
         initialValues: {
             city: '',
             district: '',
@@ -27,50 +28,25 @@ const UserForm = () => {
         onSubmit: values => {
             // add address
             dispatch(addAddress(values));
+            handleReset(values);
         },
         validationSchema: AddressSchema,
 
     });
     return (
-        <div className={styles.formContainer}>
+        <div className={`${styles.formContainer} ${isDark ? styles.dark : styles.light}`}>
             <div>
                 <form onSubmit={handleSubmit} className={styles.form}>
-                    <input
-                        id="city"
-                        name="city"
-                        type="text"
-                        placeholder={`${translate("city",currentLang)}`}
-                        onChange={handleChange}
-                        value={values.city}
-                    />
-                    {errors.city && <div className={styles.error}>{errors.city}</div>}
-                    <input
-                        id="district"
-                        name="district"
-                        type="text"
-                        placeholder={`${translate("district",currentLang)}`}
-                        onChange={handleChange}
-                        value={values.district}
-                    />
-                    {errors.district && <div className={styles.error}>{errors.district}</div>}
-                    <input
-                        id="address"
-                        name="address"
-                        type="text"
-                        placeholder={`${translate("address",currentLang)}`}
-                        onChange={handleChange}
-                        value={values.address}
-                    />
-                    {errors.address && <div className={styles.error}>{errors.address}</div>}
-                    <input
+                <input
                         id="name"
                         name="name"
                         type="text"
                         placeholder={`${translate("name",currentLang)}`}
                         onChange={handleChange}
                         value={values.name}
+                        onBlur={handleBlur}
                     />
-                    {errors.name && <div className={styles.error}>{errors.name}</div>}
+                    {errors.name && touched.name && <div className={styles.error}>{errors.name}</div>}
                     <input
                         id="surname"
                         name="surname"
@@ -78,8 +54,9 @@ const UserForm = () => {
                         placeholder={`${translate("surname",currentLang)}`}
                         onChange={handleChange}
                         value={values.surname}
+                        onBlur={handleBlur}
                     />
-                    {errors.surname && <div className={styles.error}>{errors.surname}</div>}
+                    {errors.surname && touched.surname && <div className={styles.error}>{errors.surname}</div>}
                     <input
                         id="phone"
                         name="phone"
@@ -87,8 +64,39 @@ const UserForm = () => {
                         placeholder={`${translate("phone",currentLang)}`}
                         onChange={handleChange}
                         value={values.phone}
+                        onBlur={handleBlur}
                     />
-                    {errors.phone && <div className={styles.error}>{errors.phone}</div>}
+                    {errors.phone && touched.phone && <div className={styles.error}>{errors.phone}</div>}
+                    <input
+                        id="city"
+                        name="city"
+                        type="text"
+                        placeholder={`${translate("city",currentLang)}`}
+                        onChange={handleChange}
+                        value={values.city}
+                        onBlur={handleBlur}
+                    />
+                    {errors.city && touched.city && <div className={styles.error}>{errors.city}</div>}
+                    <input
+                        id="district"
+                        name="district"
+                        type="text"
+                        placeholder={`${translate("district",currentLang)}`}
+                        onChange={handleChange}
+                        value={values.district}
+                        onBlur={handleBlur}
+                    />
+                    {errors.district && touched.district && <div className={styles.error}>{errors.district}</div>}
+                    <input
+                        id="address"
+                        name="address"
+                        type="text"
+                        placeholder={`${translate("address",currentLang)}`}
+                        onChange={handleChange}
+                        value={values.address}
+                        onBlur={handleBlur}
+                    />
+                    {errors.address && touched.address && <div className={styles.error}>{errors.address}</div>}
                     <input
                         id="doorNumber"
                         name="doorNumber"
@@ -96,8 +104,9 @@ const UserForm = () => {
                         placeholder={`${translate("doorNumber",currentLang)}`}
                         onChange={handleChange}
                         value={values.doorNumber}
+                        onBlur={handleBlur}
                     />
-                    {errors.doorNumber && <div className={styles.error}>{errors.doorNumber}</div>}
+                    {errors.doorNumber && touched.doorNumber && <div className={styles.error}>{errors.doorNumber}</div>}
                     <button type="submit">{translate("submit",currentLang)}</button>
                 </form>
             </div>
