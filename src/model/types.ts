@@ -38,3 +38,6 @@ export interface ThemeState{
 export interface LanguageState{
   language:string;
 }
+export interface filterState{
+  filterText:string;
+}

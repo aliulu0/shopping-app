@@ -1,23 +1,43 @@
 @import "global.module.scss";
-.container{
-    overflow: hidden;
-    
-    &.light{
-        color: #0a0a0a;
-        background-color: $gray-color;
+.container {
+  overflow: hidden;
+
+  &.light {
+    color: #0a0a0a;
+    background-color: $gray-color;
+  }
+  &.dark {
+    color: $gray-color;
+    background-color: #0a0a0a;
+  }
+  .sortContainer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 80%;
+      box-shadow: 0 1px 5px rgba(100, 100, 100, 0.6);
+      margin: 50px auto;
+      h1{
+        padding: 15px;
       }
-      &.dark{
-        color: $gray-color;
-        background-color: #0a0a0a;
-      }
-    h1{ 
-        margin: 50px auto;
-        width: 80%;
-        border-bottom: 1px solid #bdbdbd;
-    }
-    @include mobile{
-        h1{
-            width: 95%;
+    .sort {
+        font-size: 20px;
+        padding: 15px;
+        select{
+            padding: 10px;
+            border-radius: 10px;
+            margin: 5px;
+            font-size: 18px;
+        }
+        option{
+            font-size: 18px;
         }
     }
+  }
+  @include mobile {
+    .sortContainer {
+        flex-direction: column;
+        width: 95%;
+    }
+  }
 }

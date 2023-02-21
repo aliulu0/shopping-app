@@ -14,6 +14,7 @@ import { useAppDispatch } from '../redux/store';
 import { IoLanguage } from 'react-icons/io5';
 import { language, setLanguage } from '../redux/languageSlice'
 import { translate } from '../locales/index';
+import {getFilterText,setFilterText} from '../redux/filterSlice';
 
 function Navbar() {
   const [showNav, setShowNav] = useState(false);
@@ -25,7 +26,7 @@ function Navbar() {
   const dispatch = useAppDispatch();
   const isDark = useSelector(isDarkMode);
   const currentLang = useSelector(language);
-
+  const filterText = useSelector(getFilterText);
 
   const handleShowModal = (text: string) => {
     setShowModal(!showModal);
@@ -41,8 +42,14 @@ function Navbar() {
   const handleDarkMode = () => {
     dispatch(toggleTheme());
   }
+  //change language
   const handleToggleLang = () => {
     dispatch(setLanguage(currentLang));
+  }
+
+  // search for products
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement> ) => {
+    dispatch(setFilterText(event.target.value));
   }
   return (
     <nav className={styles.navbarContainer}>
@@ -51,7 +58,7 @@ function Navbar() {
         <span><BsShop /></span>
       </div>
       <div className={styles.navbarSearch}>
-        <input className={styles.searchInput} type="text" placeholder={`${translate("searchPlaceholder", currentLang)}`} />
+        <input className={styles.searchInput} type="text" value={filterText} onChange={handleSearch} placeholder={`${translate("searchPlaceholder", currentLang)}`} />
         {/* search icon */}
         <span className={styles.searchIcon}><FiSearch /></span>
       </div>

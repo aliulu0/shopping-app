@@ -22,7 +22,12 @@
         "slide1Text": "Shop Computers & Accessories",
         "slide2Text": "Refresh Your Home",
         "slide3Text": "Discover our Beauty selection",
-        "allProducts": "All Products"
+        "allProducts": "All Products",
+        "sortBy": "Sort by",
+        "default": "Default",
+        "rating": "Rating",
+        "priceAsc": "Price: Ascending",
+        "priceDesc": "Price Descending"
     },
     "tr": {
         "searchPlaceholder": "Ürün Ara",
@@ -48,6 +53,11 @@
         "slide1Text": "Bilgisayar ve Aksesuar Satın Alın",
         "slide2Text": "Evini yenile",
         "slide3Text": "Güzellik seçimimizi keşfedin",
-        "allProducts": "Tüm Ürünler"
+        "allProducts": "Tüm Ürünler",
+        "sortBy": "Sırala",
+        "default": "Varsayılan",
+        "rating": "Derecelendirme",
+        "priceAsc": "Fiyat: Artan",
+        "priceDesc": "Fiyat: Azalan"
     }
 }

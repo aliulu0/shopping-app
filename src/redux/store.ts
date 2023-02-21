@@ -5,13 +5,15 @@ import cartReducer from './cartSlice';
 import favoriteReducer from './favoriteSlice';
 import themeReducer from './themeSlice';
 import languageReducer from './languageSlice';
+import filterReducer from "./filterSlice";
 export const store = configureStore({
     reducer:{
         productList: productsReducer,
         cartList: cartReducer,
         favoriteList: favoriteReducer,
         theme:themeReducer,
-        language: languageReducer
+        language: languageReducer,
+        filter: filterReducer
     },
 });
 
