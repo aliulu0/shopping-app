@@ -82,7 +82,7 @@ function Navbar() {
             </button>
             <ul className={styles.mobileMenuList}>
               <button className={styles.mobileMenuAccountBtn} onClick={goToAccountPage}><span><FaUser /></span>{translate("account", currentLang)}</button>
-              <button className={styles.mobileMenuBtn}><span><FaHeart /></span>{translate("favorites", currentLang)}</button>
+              <button className={styles.mobileMenuBtn} onClick={goToFavorites}><span><FaHeart /></span>{translate("favorites", currentLang)}</button>
               <button className={styles.mobileMenuBtn} onClick={goToCart}><span><FaShoppingCart /></span>{translate("cart", currentLang)}</button>
               <button className={styles.mobileMenuBtn} onClick={handleToggleLang}><span><IoLanguage /></span>{translate("language", currentLang)}  : {currentLang}</button>
               <button className={styles.mobileMenuBtn} onClick={handleDarkMode}><span>{isDark ? <FaSun /> : <FaMoon />}</span>{translate("mode", currentLang)} : {isDark ? `${translate("light", currentLang)}` : `${translate("dark", currentLang)}`}</button>
