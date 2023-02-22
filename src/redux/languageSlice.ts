@@ -19,7 +19,7 @@ const languageSlice = createSlice({
             }else{
                 state.language = "en"
             }
-            localStorage.setItem('language', language);
+            localStorage.setItem('language', state.language);
         }
     }
 })
