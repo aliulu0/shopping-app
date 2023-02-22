@@ -1,46 +1,48 @@
-# Getting Started with Create React App
+# Shopping App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Live Demo ✨
+Netlify Hosting => [shopping-app](https://aliulu-shopping-app.netlify.app/)
 
-## Available Scripts
 
-In the project directory, you can run:
+# Setup 🚀
 
-### `npm start`
+1. Clone the repository and install it's features.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```
+npm install or yarn install and cd client and npm install or yarn install
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+2. Use the project locally(http://localhost:3000).
 
-### `npm test`
+```
+npm run dev or yarn dev
+```
+## Used Technologies and Libraries
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- React
+- sass
+- react-redux
+- redux toolkit
+- react-router-dom
+- formik
+- yup 
+- react-icons
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Images
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<img src="https://user-images.githubusercontent.com/67802869/220484713-a961e88c-d431-4367-aa34-f723e946c3a0.png" width=720px height=354px />
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+<img src="https://user-images.githubusercontent.com/67802869/220484739-22b83032-ef97-466b-864a-f21b76ce679e.jpg" width=720px height=354px />
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<img src="https://user-images.githubusercontent.com/67802869/220484751-db5f783f-67e1-4b09-9dea-ba1ef293b104.jpg" width=720px height=354px />
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+<img src="https://user-images.githubusercontent.com/67802869/220484754-ea3ff5c6-7b91-4960-af4e-5454788432d9.jpg" width=720px height=354px />
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<img src="https://user-images.githubusercontent.com/67802869/220484763-d9b88660-bf5d-45db-9d7f-7c604e6b4803.jpg" width=720px height=354px />
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+
